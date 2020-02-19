@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  vm:
+  sim:
     runs-on: ubuntu-latest
     steps:
       - name: Run in VM
@@ -13,7 +13,8 @@ jobs:
           uname -a
           pwd
           ls
-  container:
+          gcc --version
+  arm:
     runs-on: ubuntu-latest
     container: px4io/px4-dev-nuttx
     steps:
@@ -24,3 +25,4 @@ jobs:
           uname -a
           pwd
           ls
+          gcc --version
