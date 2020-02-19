@@ -15,4 +15,3 @@ jobs:
       uses: docker://golang:alpine
       with:
         args: go version
-        
