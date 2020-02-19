@@ -6,16 +6,21 @@ jobs:
   vm:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo This job does not specify a container.
-          echo It runs directly on the virtual machine.
-        name: Run on VM
+      - name: Run in VM
+        uses: actions/checkout@v1
+      - name: Run cmds in VM 
+        run: |
+          uname -a
+          pwd
+          ls
   container:
     runs-on: ubuntu-latest
     container: px4io/px4-dev-nuttx
     steps:
-      - run: |
+      - name: Run in container
+        uses: actions/checkout@v1
+      - name: Run cmds in container
+        run: |
           uname -a
-          echo This job does specify a container.
-          echo It runs in the container instead of the VM.
-        name: Run in container
+          pwd
+          ls
