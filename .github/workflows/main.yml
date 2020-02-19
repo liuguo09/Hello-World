@@ -3,15 +3,19 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
+  vm:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run docker container
-      uses: docker://golang:alpine
-      with:
-        args: go version
+      - run: |
+          echo This job does not specify a container.
+          echo It runs directly on the virtual machine.
+        name: Run on VM
+  container:
+    runs-on: ubuntu-latest
+    container: px4io/px4-dev-nuttx
+    steps:
+      - run: |
+          uname -a
+          echo This job does specify a container.
+          echo It runs in the container instead of the VM.
+        name: Run in container
