@@ -24,6 +24,9 @@ jobs:
         run: |
           uname -a
           pwd
-          ls /
-          ls /work         
-          gcc --version
+          cd /work
+          git clone https://github.com/apache/incubator-nuttx.git
+          git clone https://github.com/apache/incubator-nuttx-apps.git apps
+          cd incubator-nuttx
+          ./tools/configure.sh sim:nsh
+          make -j4
