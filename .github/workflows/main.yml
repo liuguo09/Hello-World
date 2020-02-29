@@ -16,7 +16,7 @@ jobs:
           gcc --version
   arm:
     runs-on: ubuntu-latest
-    container: px4io/px4-dev-nuttx
+    container: liuguo09/nuttx-test:18.04
     steps:
       - name: Run in container
         uses: actions/checkout@v1
