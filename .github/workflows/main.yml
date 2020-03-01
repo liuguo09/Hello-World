@@ -3,9 +3,9 @@ name: CI
 on: [push]
 
 jobs:
-  sim1:
+  sim:
     runs-on: ubuntu-latest
-    container: liuguo09/nuttx-test:18.04
+    container: liuguo09/ubuntu-nuttx:18.04
     steps:
       - name: Run in container
         uses: actions/checkout@v1
@@ -13,25 +13,25 @@ jobs:
         run: |
           uname -a
           pwd
-          cd /work
-          git clone https://github.com/apache/incubator-nuttx.git
+          ls /prebuilt
+          git clone https://github.com/apache/incubator-nuttx.git nuttx
           git clone https://github.com/apache/incubator-nuttx-apps.git apps
-          cd incubator-nuttx
-          ./tools/configure.sh sim:nsh
-          make -j4
-  sim2:
-    runs-on: ubuntu-latest
-    container: liuguo09/nuttx-test:18.04
-    steps:
-      - name: Run in container
-        uses: actions/checkout@v1
-      - name: Run cmds in container
-        run: |
-          uname -a
-          pwd
-          cd /work
-          git clone https://github.com/apache/incubator-nuttx.git
-          git clone https://github.com/apache/incubator-nuttx-apps.git apps
-          cd incubator-nuttx
+          cd nuttx
           ./tools/configure.sh sim:dsptest
+          make -j4
+  arm:
+    runs-on: ubuntu-latest
+    container: liuguo09/ubuntu-nuttx:18.04
+    steps:
+      - name: Run in container
+        uses: actions/checkout@v1
+      - name: Run cmds in container
+        run: |
+          uname -a
+          pwd
+          ls /prebuilt
+          git clone https://github.com/apache/incubator-nuttx.git nuttx
+          git clone https://github.com/apache/incubator-nuttx-apps.git apps
+          cd nuttx
+          ./tools/configure.sh photon:nsh
           make -j4
