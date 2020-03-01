@@ -3,18 +3,23 @@ name: CI
 on: [push]
 
 jobs:
-  sim:
+  sim1:
     runs-on: ubuntu-latest
+    container: liuguo09/nuttx-test:18.04
     steps:
-      - name: Run in VM
+      - name: Run in container
         uses: actions/checkout@v1
-      - name: Run cmds in VM 
+      - name: Run cmds in container
         run: |
           uname -a
           pwd
-          ls
-          gcc --version
-  arm:
+          cd /work
+          git clone https://github.com/apache/incubator-nuttx.git
+          git clone https://github.com/apache/incubator-nuttx-apps.git apps
+          cd incubator-nuttx
+          ./tools/configure.sh sim:nsh
+          make -j4
+  sim2:
     runs-on: ubuntu-latest
     container: liuguo09/nuttx-test:18.04
     steps:
