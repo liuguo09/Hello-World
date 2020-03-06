@@ -13,7 +13,9 @@ jobs:
         with:
           path: helloworld
           fetch-depth: 0
-      - run: git fetch origin +refs/tags/*:refs/tags/*
+      - run: |
+          cd helloworld
+          git fetch origin +refs/tags/*:refs/tags/*
 
       - name: Run cmds in vm
         run: |
