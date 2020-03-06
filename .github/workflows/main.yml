@@ -8,7 +8,7 @@ on:
 jobs:
   check:   
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+#    if: github.event_name == 'pull_request'
     steps:
       - name: check job
         run: |
@@ -18,8 +18,10 @@ jobs:
     
   sim:
     needs: check
+    
     runs-on: ubuntu-latest
     steps:
+      - name: checkout HelloWorld
       - uses: actions/checkout@v2
         with:
           path: helloworld
