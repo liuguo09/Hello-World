@@ -6,6 +6,16 @@ on:
     branches: [master]
 
 jobs:
+  check:   
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: check job
+        run: |
+          echo "check patch only for pull request"
+          pwd
+          ls   
+    
   sim:
     runs-on: ubuntu-latest
     steps:
