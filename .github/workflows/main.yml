@@ -9,11 +9,11 @@ jobs:
   sim:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Hello repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           path: helloworld
           fetch-depth: 0
+      - run: git fetch origin +refs/tags/*:refs/tags/*
 
       - name: Run cmds in vm
         run: |
